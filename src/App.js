@@ -17,12 +17,32 @@ class App extends React.Component {
   }
 
   handleSubmit = event => {
+    // Stop page reload
     event.preventDefault();
-    let input = this.state.inputForm.trim();
-    console.log(`Submit value: ${input}`);
-    let newArray = this.state.gifWords.concat(input);
-    this.setState({ gifWords: newArray });
-    this.setState({ inputForm: "" })
+
+    // Function to capitalize first letter and set others to lowercase
+    const capitalize = (string) => {
+      if (typeof string !== 'string') return ''
+      return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase()
+    }
+
+    // Trim and capitalize input
+    let input = capitalize(this.state.inputForm.trim());
+
+    // Prevent empty input or repeat
+    if (input === "" || this.state.gifWords.indexOf(input) > -1) {
+      console.log("Empty value or repeat.");
+      this.setState({ inputForm: "" });
+    }
+
+    else {
+      console.log(`Submit value: ${input}`);
+      // Create new array that includes input
+      let newArray = this.state.gifWords.concat(input);
+      this.setState({ gifWords: newArray });
+      this.setState({ inputForm: "" });
+    }
+    
   }
 
   render() {
