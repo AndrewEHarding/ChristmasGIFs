@@ -42,7 +42,7 @@ class App extends React.Component {
       this.setState({ gifWords: newArray });
       this.setState({ inputForm: "" });
     }
-    
+
   }
 
   render() {
@@ -53,6 +53,7 @@ class App extends React.Component {
 
         <Control>
 
+          {/* Input form */}
           <form onSubmit={this.handleSubmit}>
             <input className="form-control" type="text" placeholder="Add Christmas GIFs!" name="inputForm" onChange={this.handleChange.bind(this)} value={this.state.inputForm} />
             <button type="submit" className="btn btn-outline-success">Add!</button>
