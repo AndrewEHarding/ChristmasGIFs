@@ -9,7 +9,7 @@ class App extends React.Component {
 
   state = {
     inputForm: "",
-    gifWords: ["Snowman", "Dreidel", "Cookies"],
+    gifWords: ["Snowman", "Dreidel", "Cookies", "Presents", "Sleigh"],
     gifSearch: "",
     searchLength: 0,
     giphyResponse: []
@@ -74,7 +74,11 @@ class App extends React.Component {
 
           {/* Render buttons from gifWords state */}
           {this.state.gifWords.map(word => (
+            // Alternate green and red buttons
+            (this.state.gifWords.indexOf(word) % 2 === 1) ?
             <button key={word} type="button" value={word} className="btn btn-success" onClick={this.handleClick}>{word}</button>
+            :
+            <button key={word} type="button" value={word} className="btn btn-danger" onClick={this.handleClick}>{word}</button>
           ))}
 
         </Control>
