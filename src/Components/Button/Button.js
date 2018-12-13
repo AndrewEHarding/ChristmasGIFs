@@ -2,8 +2,9 @@ import React from "react";
 import "./Button.css";
 
 const Button = props => {
+
     return (
-        <button type="button" className="btn btn-success">{props.word}</button>
+        <button type="button" value={props.word} className="btn btn-success" >{props.word}</button>
     );
 };
 
