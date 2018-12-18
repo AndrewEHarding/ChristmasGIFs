@@ -6,8 +6,6 @@ import Display from "./Components/Display";
 
 const API_KEY = `${process.env.REACT_APP_GIPHY_API_KEY}`;
 
-console.log(API_KEY);
-
 class App extends React.Component {
 
   state = {
@@ -64,14 +62,16 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    // AJAX Request
     fetch(`https://api.giphy.com/v1/gifs/search?q=${this.state.gifSearch}&api_key=${API_KEY}&limit=${this.state.searchLength}`)
       .then(res => res.json())
       .then(
         (result) => {
           this.setState({
             isLoaded: true,
-            giphyResponse: result.items
+            giphyResponse: result.data
           });
+          console.log(result.data);
         },
         (error) => {
           this.setState({
