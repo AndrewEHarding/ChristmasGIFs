@@ -5,6 +5,8 @@ import Control from "./Components/Control";
 import Display from "./Components/Display";
 // import Button from "./Components/Button";
 
+const API_KEY = process.env.REACT_APP_GIPHY_API_KEY;
+
 class App extends React.Component {
 
   state = {
@@ -61,7 +63,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    fetch(`https://api.giphy.com/v1/gifs/search?q=${this.state.gifSearch}&api_key=${process.env.REACT_APP_GIPHY_API_KEY}&limit=${this.state.searchLength}`)
+    fetch(`https://api.giphy.com/v1/gifs/search?q=${this.state.gifSearch}&api_key=${API_KEY}&limit=${this.state.searchLength}`)
       .then(res => res.json())
       .then(
         (result) => {
