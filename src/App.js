@@ -3,9 +3,10 @@ import './App.css';
 import Wrapper from "./Components/Wrapper";
 import Control from "./Components/Control";
 import Display from "./Components/Display";
-// import Button from "./Components/Button";
 
-const API_KEY = process.env.REACT_APP_GIPHY_API_KEY;
+const API_KEY = `${process.env.REACT_APP_GIPHY_API_KEY}`;
+
+console.log(API_KEY);
 
 class App extends React.Component {
 
