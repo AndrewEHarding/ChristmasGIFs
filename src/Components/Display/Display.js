@@ -3,7 +3,7 @@ import "./Display.css";
 
 const Display = props => {
     return (
-        <div className="border border-danger rounded">
+        <div className="comp-display border border-danger rounded">
             {props.children}
         </div>
     );

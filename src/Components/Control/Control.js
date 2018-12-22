@@ -3,7 +3,7 @@ import "./Control.css";
 
 const Control = props => {
     return (
-        <div className="border border-success rounded">
+        <div className="comp-control border border-success rounded">
             {props.children}
         </div>
     );

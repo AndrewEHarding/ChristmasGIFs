@@ -91,10 +91,12 @@ class App extends React.Component {
         <Control>
 
           {/* Input form */}
-          <form onSubmit={this.handleSubmit}>
-            <input className="form-control" type="text" placeholder="Add Christmas GIFs!" name="inputForm" onChange={this.handleChange.bind(this)} value={this.state.inputForm} />
-            <button type="submit" className="btn btn-outline-success">Add!</button>
+          <form className="control-form row" onSubmit={this.handleSubmit}>
+            <input className="form-control col" type="text" placeholder="Add Christmas GIFs!" name="inputForm" onChange={this.handleChange.bind(this)} value={this.state.inputForm} />
+            <div className="col"><button type="submit" className="btn btn-danger">Add!</button></div>
           </form>
+
+          <hr></hr>
 
           {/* Render buttons from gifWords state */}
           {this.state.gifWords.map(word => (
@@ -108,13 +110,16 @@ class App extends React.Component {
         </Control>
 
         <Display>
-
-          Display Div
             <button type="button" className="btn btn-info" onClick={this.handleClear}>Clear GIFs</button>
-
+            
+            <hr></hr>
         </Display>
 
-        <div>Icons made by <a href="https://www.freepik.com/" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank" rel="noopener noreferrer">CC 3.0 BY</a></div>
+        <div className="footer bg-danger">
+        Photo by <a href="https://www.freestocks.org" title="Freestocks" target="_blank" rel="noopener noreferrer">freestocks.org</a> from Pexels | 
+        Icons made by <a href="https://www.freepik.com/" title="Freepik" target="_blank" rel="noopener noreferrer">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon" target="_blank" rel="noopener noreferrer">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank" rel="noopener noreferrer">CC 3.0 BY</a> | 
+        Site repository <a href="https://github.com/AndrewEHarding/ChristmasGIFs" title="Repository" target="_blank" rel="noopener noreferrer">ChristmasGIFs</a> | 
+        Creator portfolio <a href="http://ahardingdesign.me/" title="Portfolio" target="_blank" rel="noopener noreferrer">AHardingDesign.me</a> </div>
 
       </Wrapper>
     );

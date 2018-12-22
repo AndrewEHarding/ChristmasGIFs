@@ -1,0 +1,11 @@
+.comp-display {
+    background-color: rgba(220, 53, 70, 0.6);
+    padding-top: 5px;
+    padding-right: 5px;
+    margin-bottom: 10px; 
+}
+
+.comp-display > * {
+    margin-left: 5px;
+    margin-bottom: 5px; 
+}
