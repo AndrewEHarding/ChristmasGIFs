@@ -12,24 +12,33 @@ class App extends React.Component {
     isLoaded: false,
     error: false,
     inputForm: "",
-    gifWords: ["Snowman", "Dreidel", "Cookies", "Presents", "Sleigh"],
+    gifWords: ["Cookies", "Gingerbread", "Mittens", "Mistletoe", "Presents", "Reindeer", "Snowman", "Sleigh"],
     gifSearch: "",
-    searchLength: 10,
+    searchLength: 25,
     giphyResponse: []
   }
 
   handleChange = event => {
-    this.setState({ inputForm: event.target.value });
+    this.setState({ inputForm: event.target.value })
   }
 
   handleClick = event => {
-    this.setState({ gifSearch: event.target.value });
-    console.log(`Current search: ${event.target.value}`);
+    this.setState(
+      { gifSearch: event.target.value },
+      () => {
+        console.log(`Current search: ${this.state.gifSearch}`)
+        this.handleFetch()
+      }
+    )
+
   }
 
   handleClear = () => {
-    this.setState({ gifSearch: "" });
-    console.log(`Search cleared`)
+    this.setState({ giphyResponse: [] },
+      () => {
+        console.log(`Search cleared`)
+      }
+    );
   }
 
   handleSubmit = event => {
@@ -61,9 +70,8 @@ class App extends React.Component {
 
   }
 
-  componentDidMount() {
-    // AJAX Request
-    fetch(`https://api.giphy.com/v1/gifs/search?q=${this.state.gifSearch}&api_key=${API_KEY}&limit=${this.state.searchLength}`)
+  handleFetch = () => {
+    fetch(`https://api.giphy.com/v1/gifs/search?q=${this.state.gifSearch}&api_key=${API_KEY}&limit=${this.state.searchLength}&rating=g`)
       .then(res => res.json())
       .then(
         (result) => {
@@ -102,23 +110,42 @@ class App extends React.Component {
           {this.state.gifWords.map(word => (
             // Alternate green and red buttons
             (this.state.gifWords.indexOf(word) % 2 === 1) ?
-              <button key={word} type="button" value={word} className="btn btn-success" onClick={this.handleClick}>{word}</button>
+              <button key={word} type="button" value={word} className="btn btn-success" onClick={this.handleClick.bind(this)}>{word}</button>
               :
-              <button key={word} type="button" value={word} className="btn btn-danger" onClick={this.handleClick}>{word}</button>
+              <button key={word} type="button" value={word} className="btn btn-danger" onClick={this.handleClick.bind(this)}>{word}</button>
           ))}
 
         </Control>
 
         <Display>
-            <button type="button" className="btn btn-info" onClick={this.handleClear}>Clear GIFs</button>
-            
-            <hr></hr>
+          <button type="button" className="btn btn-info" onClick={this.handleClear}>Clear GIFs</button>
+
+          {/* <div class="form-group">
+            <label for="exampleFormControlSelect1">How many Christmas GIFs?</label>
+            <select class="form-control" id="exampleFormControlSelect1">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
+          </div> */}
+
+          <hr></hr>
+
+          {
+            (this.state.giphyResponse.length === 0) ?
+              <h2>Click a button to load some Christmas GIFs!</h2>
+              :
+              <p>Response is true</p>
+          }
+
         </Display>
 
         <div className="footer bg-danger">
-        Photo by <a href="https://www.freestocks.org" title="Freestocks" target="_blank" rel="noopener noreferrer">freestocks.org</a> from Pexels | 
-        Icons made by <a href="https://www.freepik.com/" title="Freepik" target="_blank" rel="noopener noreferrer">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon" target="_blank" rel="noopener noreferrer">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank" rel="noopener noreferrer">CC 3.0 BY</a> | 
-        Site repository <a href="https://github.com/AndrewEHarding/ChristmasGIFs" title="Repository" target="_blank" rel="noopener noreferrer">ChristmasGIFs</a> | 
+          Photo by <a href="https://www.freestocks.org" title="Freestocks" target="_blank" rel="noopener noreferrer">freestocks.org</a> from Pexels |
+        Icons made by <a href="https://www.freepik.com/" title="Freepik" target="_blank" rel="noopener noreferrer">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon" target="_blank" rel="noopener noreferrer">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank" rel="noopener noreferrer">CC 3.0 BY</a> |
+        Site repository <a href="https://github.com/AndrewEHarding/ChristmasGIFs" title="Repository" target="_blank" rel="noopener noreferrer">ChristmasGIFs</a> |
         Creator portfolio <a href="http://ahardingdesign.me/" title="Portfolio" target="_blank" rel="noopener noreferrer">AHardingDesign.me</a> </div>
 
       </Wrapper>

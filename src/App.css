@@ -24,3 +24,9 @@ h1 {
     font-size: 60pt;
     text-shadow: 3px 3px 5px rgba(40, 167, 70);
 }
+
+h2 {
+    font-family: 'Mountains of Christmas', cursive;
+    color: white;
+    /* text-shadow: 3px 3px 5px rgba(40, 167, 70); */
+}
