@@ -9,6 +9,7 @@ body {
 
 .footer {
     position: fixed;
+    right: 0;
     left: 0;
     bottom: 0;
     width: 100%;
@@ -28,5 +29,13 @@ h1 {
 h2 {
     font-family: 'Mountains of Christmas', cursive;
     color: white;
-    /* text-shadow: 3px 3px 5px rgba(40, 167, 70); */
 }
+
+.gif-div > * {
+    margin-left: 5px;
+    margin-bottom: 5px; 
+}
+
+/* .christmas-gif {
+    
+} */

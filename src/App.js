@@ -137,7 +137,14 @@ class App extends React.Component {
             (this.state.giphyResponse.length === 0) ?
               <h2>Click a button to load some Christmas GIFs!</h2>
               :
-              <p>Response is true</p>
+              <div className="gif-div clearfix">
+               <h2>Click on a GIF to animate it!</h2>
+
+              {this.state.giphyResponse.map(gif => (
+                <img key={gif.id} src={gif.images.fixed_height_still.url} alt="" className="img-thumbnail christmas-gif" data-still="" data-animate="" data-state="still"/>
+              ))}
+              
+              </div>
           }
 
         </Display>
