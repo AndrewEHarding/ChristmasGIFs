@@ -1,5 +1,6 @@
 {
   "name": "christmasgifs",
+  "homepage" : "https://andreweharding.github.io/ChristmasGIFs/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
