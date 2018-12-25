@@ -3,6 +3,7 @@ import './App.css';
 import Wrapper from "./Components/Wrapper";
 import Control from "./Components/Control";
 import Display from "./Components/Display";
+import Gif from "./Components/Gif";
 
 const API_KEY = `${process.env.REACT_APP_GIPHY_API_KEY}`;
 
@@ -14,7 +15,7 @@ class App extends React.Component {
     inputForm: "",
     gifWords: ["Cookies", "Gingerbread", "Mittens", "Mistletoe", "Presents", "Reindeer", "Snowman", "Sleigh"],
     gifSearch: "",
-    searchLength: 25,
+    searchLength: 40,
     giphyResponse: []
   }
 
@@ -120,17 +121,6 @@ class App extends React.Component {
         <Display>
           <button type="button" className="btn btn-info" onClick={this.handleClear}>Clear GIFs</button>
 
-          {/* <div class="form-group">
-            <label for="exampleFormControlSelect1">How many Christmas GIFs?</label>
-            <select class="form-control" id="exampleFormControlSelect1">
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
-            </select>
-          </div> */}
-
           <hr></hr>
 
           {
@@ -138,22 +128,29 @@ class App extends React.Component {
               <h2>Click a button to load some Christmas GIFs!</h2>
               :
               <div className="gif-div clearfix">
-               <h2>Click on a GIF to animate it!</h2>
+                <h2>Click on a GIF to animate it!</h2>
 
-              {this.state.giphyResponse.map(gif => (
-                <img key={gif.id} src={gif.images.fixed_height_still.url} alt="" className="img-thumbnail christmas-gif" data-still="" data-animate="" data-state="still"/>
-              ))}
-              
+                {this.state.giphyResponse.map(gif => (
+
+                  <Gif
+                    key={gif.id}
+                    still={gif.images.fixed_height_still.url}
+                    animate={gif.images.fixed_height.url}
+                  />
+
+                ))}
+
               </div>
           }
 
         </Display>
 
-        <div className="footer bg-danger">
-          Photo by <a href="https://www.freestocks.org" title="Freestocks" target="_blank" rel="noopener noreferrer">freestocks.org</a> from Pexels |
-        Icons made by <a href="https://www.freepik.com/" title="Freepik" target="_blank" rel="noopener noreferrer">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon" target="_blank" rel="noopener noreferrer">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank" rel="noopener noreferrer">CC 3.0 BY</a> |
-        Site repository <a href="https://github.com/AndrewEHarding/ChristmasGIFs" title="Repository" target="_blank" rel="noopener noreferrer">ChristmasGIFs</a> |
-        Creator portfolio <a href="http://ahardingdesign.me/" title="Portfolio" target="_blank" rel="noopener noreferrer">AHardingDesign.me</a> </div>
+        <p className="footer">
+          Creator portfolio <a href="http://ahardingdesign.me/" title="Portfolio" target="_blank" rel="noopener noreferrer">AHardingDesign.me</a> | 
+          Site repository <a href="https://github.com/AndrewEHarding/ChristmasGIFs" title="Repository" target="_blank" rel="noopener noreferrer">ChristmasGIFs</a> | 
+          Photo by <a href="https://www.freestocks.org" title="Freestocks" target="_blank" rel="noopener noreferrer">freestocks.org</a> from Pexels | 
+          Icons made by <a href="https://www.freepik.com/" title="Freepik" target="_blank" rel="noopener noreferrer">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon" target="_blank" rel="noopener noreferrer">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank" rel="noopener noreferrer">CC 3.0 BY</a>
+        </p>
 
       </Wrapper>
     );
